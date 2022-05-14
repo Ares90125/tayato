@@ -5,7 +5,7 @@ const NavBar: React.FC = () => {
   const { search } = React.useContext(StoreContext);
   return (
     <>
-      <div className='md:hidden lg:flex w-full transform-gpu shadow-sm navbar min-h-12 fixed top-0 z-50 p-0 after:will-change-transform md:flex  after:transform-gpu after:absolute after:inset-0 after:z-[-1] after:backdrop-filter after:backdrop-blur-3xl  after:bg-white/80'>
+      <div className='lg:w-full w-0 overflow-hidden  transform-gpu shadow-sm navbar min-h-12 fixed top-0 z-50 p-0 after:will-change-transform md:flex  after:transform-gpu after:absolute after:inset-0 after:z-[-1] after:backdrop-filter after:backdrop-blur-3xl  after:bg-white/80'>
         <div className='md:mx-2 flex-1 px-2 flex items-center'>
           <div className='relative'>
             <button className='bg-transparent px-3 min-h-[32px] border-none text-primary hover:bg-teal-50 rounded-xl' aria-label='Menu' type='button' aria-haspopup='true' aria-expanded='false'>
@@ -61,7 +61,7 @@ const NavBar: React.FC = () => {
             </span>
           </button>
           <div className="relative">
-            <button aria-label="Connexion" className="bg-white text-gray-600 text-sm hover:text-gray-800 py-2 font-arabic font-medium">
+            <button aria-label="Connexion" className="bg-transparent text-gray-600 text-sm hover:text-gray-800 py-2 font-arabic font-medium">
               <span className="flex h-full w-full items-center gap-x-1 gap-y-[2.5px] flex-row">
                 <span className="ml-0 mr-0">
                 <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="22" width="22" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@ const NavBar: React.FC = () => {
             </button>
           </div>
           <a href="/login/">
-            <button aria-label="Login" className="bg-white text-gray-600 text-sm hover:text-gray-800 py-4 font-arabic font-medium px-2">
+            <button aria-label="Login" className="bg-transparent text-gray-600 text-sm hover:text-gray-800 py-4 font-arabic font-medium px-2">
               <span className="flex h-full w-full items-center gap-x-1 gap-y-[2.5px] flex-row">
                 <span className="ml-0 mr-0">
                   <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="22" width="22" xmlns="http://www.w3.org/2000/svg">
