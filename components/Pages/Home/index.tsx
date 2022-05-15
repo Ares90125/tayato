@@ -241,7 +241,7 @@ const HomePage: React.FC = () => {
     <div className='flex flex-wrap '>
         {data.map((resource, index) => {
           return (
-            <div key={index} className='transition xl:w-1/4 2xl:w-1/6 md:w-1/3 p-4 sm:w-1/2 :scale-105 h-[500px]'>
+            <div key={index} className='transition xl:w-1/4 2xl:w-1/6 md:w-1/3 p-4 sm:w-1/2 :scale-105 h-[500px] hover:scale-105'>
               <Card />
             </div>
           );
