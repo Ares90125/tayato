@@ -17,7 +17,7 @@ const Card: React.FC = () => (
       </div>
       <div className="absolute bottom-0 w-full skew-y-[4deg]  bg-orange-300  mb-[-20px] p-3 transform-gpu">
         <div className=' bottom-0 ml-[5%] w-[90%] flex flex-col skew-y-[-4deg]  py-2'>
-          <div className='text-2xl py-[2%] text-center'>iPhone 11 64Go Grand package cahche</div>
+          <div className='text-xl py-[2%] text-center'>iPhone 11 64Go Grand package cahche</div>
           <div className='h-[1px] bg-black w-full'></div>
           <div className='text-lg flex flex-row items-center'>
             <div>
