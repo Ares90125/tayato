@@ -47,6 +47,7 @@ const data: Array<any> = [
 ]
 const HomePage: React.FC = () => {
   const { search } = React.useContext(StoreContext);
+  const [ iframeVisible, setIframeVisible ] = React.useState(true);
   return (
     <div className='pt-16'>
       <div className='mt-10 md:mt-12 mx-auto pt-1 h-20 md:h-20'>
@@ -59,7 +60,7 @@ const HomePage: React.FC = () => {
           <path d="M719.775,74.325c0,.678-.373,1.034-1.1,1.034-.322,0-.813-.017-1.423-.068-.627-.034-1.491-.068-1.813-.068-1.423,0-2.05,1.152-2.525,1.677a7.766,7.766,0,0,0-.779,3.745c0,.762.017,1.9.034,3.423s.034,2.677.034,3.423c0,.508.034,1.254.1,2.27q.1,1.5.1,2.237c0,.424-.288.661-.847.712-.813.068-2.084.1-3.8.1q-2.44,0-3.914-.152c-.576-.068-.847-.356-.847-.864,0-1.389.017-3.49.034-6.286.017-2.779.017-4.88.017-6.269a51.864,51.864,0,0,0-1.1-11.555,1.887,1.887,0,0,1-.051-.39.525.525,0,0,1,.39-.525c.949-.1,4.151.017,4.151.017,1.9-.017,4.117-.017,4.2-.017.3,0,.61-.085.966.966a.78.78,0,0,0,.762.491,7.5,7.5,0,0,0,2.406-.525c1.711-.61,2.067-1,3.643-1,.966,0,1.593.2,1.593.627a21.235,21.235,0,0,1-.153,2.152c-.1,1-.169,1.508-.186,1.949,0,.508.017-.017.034.813.051,1.067.068,1.745.068,2.084" transform="translate(-573.299 -44.435)" fill="#e64b41" />
         </g></svg>
       </div>
-      <div className='mx-10 md:mx-4 mt-2 md:mt-12'>
+      <div className='mx-10 md:mx-4 mt-2 md:mt-6'>
         <div className='w-full md:max-w-3xl mx-auto'>
           <div className="relative flex items-center self-center w-full p-4 overflow-hidden text-gray-600 focus-within:text-gray-400">
             <div className="absolute search-icon left-10">
@@ -188,9 +189,12 @@ const HomePage: React.FC = () => {
           </li>
         </ul>
       </div>
-      <div className='mt-6 md:mt-12'>
+      {iframeVisible && <div className='mt-6 md:mt-12'>
         <div aria-hidden="true" tabIndex={-1} className="relative w-full aspect-1000/300 max-w-[1050px] mx-auto mb-1 border border-gray-300 rounded-2xl overflow-hidden lg:block">
-          <button tabIndex={-1} className="p-1 rounded-full bg-gray-100 text-gray-400 absolute top-0 right-0 mr-1.5 mt-1.5 border border-gray-300">
+          <button tabIndex={-1} 
+            className="p-1 rounded-full bg-gray-100 text-gray-400 absolute top-0 right-0 mr-1.5 mt-1.5 border border-gray-300"
+            onClick={(e) => setIframeVisible(false)}
+          >
             <svg className="fill-current pointer-events-none text-gray-400 w-5 h-5" viewBox="0 0 20 20">
               <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path>
             </svg>
@@ -198,7 +202,7 @@ const HomePage: React.FC = () => {
           <span className='py-0.5 px-2 text-3xs rounded-full bg-gray-100 text-gray-600 absolute top-0 left-0 ml-2 mt-2'>blah blah</span>
           <iframe loading='lazy' className='w-full h-full overflow-hidden' src="https://www.tayara.tn/static/homebanner.html"></iframe>
         </div>
-      </div>
+      </div>}
       <Carousel />
       <div className='flex flex-wrap '>
         {data.map((resource, index) => {

@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { StoreContext } from '../../utils/store';
 
 const NavBar: React.FC = () => {
   const { search } = React.useContext(StoreContext);
+  const [ menuVisible, setMenuVisible ] = React.useState(false);
+  const menuRef = useRef(null);
+  
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target) && !menuVisible) {
+        setMenuVisible(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menuRef]);
+  
   return (
     <>
       <div className='lg:w-full w-0 overflow-hidden  transform-gpu shadow-sm navbar min-h-12 fixed top-0 z-50 p-0 after:will-change-transform md:flex  after:transform-gpu after:absolute after:inset-0 after:z-[-1] after:backdrop-filter after:backdrop-blur-3xl  after:bg-white/80'>
         <div className='md:mx-2 flex-1 px-2 flex items-center'>
           <div className='relative'>
-            <button className='bg-transparent px-3 min-h-[32px] border-none text-primary hover:bg-teal-50 rounded-xl' aria-label='Menu' type='button' aria-haspopup='true' aria-expanded='false'>
+            <button className='bg-transparent px-3 min-h-[32px] border-none text-primary hover:bg-teal-50 rounded-xl' aria-label='Menu' type='button' aria-haspopup='true' aria-expanded='false'
+              onClick={() => setMenuVisible(!menuVisible)}
+            >
               <svg className='fill-current stroke-0 w-[22px] h-[22px]' viewBox='0 0 512 512'>
                 <path d='M48 256c0 114.9 93.1 208 208 208s208-93.1 208-208S370.9 48 256 48 48 141.1 48 256zm289.1-43.4c7.5-7.5 19.8-7.5 27.3 0 3.8 3.8 5.6 8.7 5.6 13.6s-1.9 9.9-5.7 13.7l-94.3 94c-7.6 6.9-19.3 6.7-26.6-.6l-95.7-95.4c-7.5-7.5-7.6-19.7 0-27.3 7.5-7.5 19.7-7.6 27.3 0l81.1 81.9 81-79.9z' fill="#EE493A"></path>
               </svg>
             </button>
+            
           </div>
           <div className='flex items-center basis-full space-x-7 px-2'>
             <a href="/" className='text-left'>
@@ -28,7 +46,7 @@ const NavBar: React.FC = () => {
             <div className='flex-grow'>
               <div className='relative w-full md:max-w-3xl mx-auto group'>
                 <form>
-                  <input className="text-base cursor-text w-full input-md flex text-gray-500 rounded-full pr-20 outline-offset-0 outline-1 placeholder:text-gray-400/80 transition-all duration-300 focus:transition-all hover:outline-gray-400 focus:outline-offset-0 font-bold font-arabic undefined placeholder:text-gray-600  focus:max-w-full bg-transparent focus:bg-gray-200 pl-10 !outline-none :text-gray-500 w-full focus:placeholder:text-gray-500 rounded-lg h-10 bg-clip-padding text-gray-700 pr-3 w-full" placeholder="Search on tayara"
+                  <input className="text-base cursor-text w-full input-md flex text-gray-500 rounded-full pr-20 outline-offset-0 outline-1 placeholder:text-gray-300 transition-all duration-300 focus:transition-all hover:outline-gray-400 focus:outline-offset-0 font-bold font-arabic undefined placeholder:text-gray-600  focus:max-w-full bg-transparent focus:bg-gray-200 pl-10 !outline-none :text-gray-500 w-full focus:placeholder:text-gray-500 rounded-lg h-10 bg-clip-padding text-gray-700 pr-3 w-full" placeholder="Search on tayara"
                   value={search[0]}
                   onChange={(e) => search[1](e.target.value)}
                   />
@@ -114,7 +132,53 @@ const NavBar: React.FC = () => {
           </span>
         </div>
       </div>
-      
+
+      {menuVisible && 
+      <div ref={menuRef} className="fixed top-[60px] right-2 lg:left-2 transform scale-100 opacity-100 z-50">
+        <div className="w-64 rounded-lg p-2 shadow bg-cyan-50 text-primary-content">
+          <a className="w-full p-2 hover:no-underline cursor-pointer border-none flex justify-between text-gray-700 font-arabic" href="#">
+            <span>Need help ?</span>
+            <span>
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
+              </svg>
+            </span>
+          </a>
+          <a className="w-full p-2 hover:no-underline cursor-pointer border-none flex justify-between text-gray-700 font-arabic" href="https://tayarahelp.zendesk.com/hc/fr/requests/new" >
+            <span >Contact us</span>
+            <span >
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="20" width="20" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
+              </svg>
+            </span>
+          </a>
+          <a className="w-full p-2 hover:no-underline cursor-pointer border-none flex justify-between text-gray-700 font-arabic" href="/shops/" >
+            <span >Professionals</span>
+            <span >
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="20" width="20" xmlns="http://www.w3.org/2000/svg" >
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
+              </svg>
+            </span>
+          </a>
+          <a className="w-full p-2 hover:no-underline cursor-pointer border-none flex justify-between text-gray-700 font-arabic" href="/terms/" >
+            <span >Terms of Use</span>
+            <span >
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="20" width="20" xmlns="http://www.w3.org/2000/svg" >
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
+              </svg>
+            </span>
+          </a>
+          <a className="w-full p-2 hover:no-underline cursor-pointer border-none flex justify-between text-gray-700 font-arabic" href="/terms/#Utilisation%20des%20cookies%20et%20autres%20technologies" >
+            <span >Cookie policies</span>
+            <span >
+              <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 20 20" height="20" width="20" xmlns="http://www.w3.org/2000/svg" >
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+      }
       <div className='lg:hidden w-full shadow-sm z-[99999] fixed top-0 right-0 left-0 w-screen h-12 will-change-transform pointer-events-auto transform-gpu bg-white/70'>
         <div className="grid grid-cols-12 px-2">
           <div className="col-span-5 flex items-center"></div>
