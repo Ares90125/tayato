@@ -174,7 +174,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="carousel my-12 mx-auto bg-slate-400 ">
+    <div className="carousel ">
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">
           <button
@@ -225,11 +225,11 @@ const Carousel = () => {
         </div>
         <div
           ref={carousel}
-          className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth  touch-pan-x z-0 "
+          className="bg-slate-300 mt-12 mx-auto  rounded-2xl  carousel-container relative flex gap-1 overflow-hidden scroll-smooth  touch-pan-x z-0 "
         >
           {data.map((resource, index) => {
             return (
-              <div  key={index} className="transition hover:duration-500 my-[20px] hover:scale-105 carousel-item text-center relative  w-[255px] h-[330px] snap-start mx-[10px]">
+              <div  key={index} className="transition  hover:duration-500 my-[20px] hover:scale-105 carousel-item text-center relative  w-[255px] h-[330px] snap-start mx-[10px]">
                   <div className="aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0 w-full h-full rounded-xl overflow-hidden relative">
                         <img  className="w-full h-full" src="./assets/images/carosel.jpg"></img>
                         <div className="absolute top-0 right-0 bottom-0 left-0 flex flex-col place-content-between text-white text-semibold">
